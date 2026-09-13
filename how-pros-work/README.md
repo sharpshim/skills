@@ -10,7 +10,8 @@ AI 도구를 쓰는 방식 자체를 진단하고 개선 방법을 제안하는 
 how-pros-work/
 ├── SKILL.md                   진단 절차, 호출 조건, 출력 형식
 └── references/
-    └── techniques.md          기법 카탈로그 (필요할 때만 읽힘)
+    ├── techniques.md          기법 카탈로그 (필요할 때만 읽힘)
+    └── sources.md             명령어·설정 확인용 공식 문서 목록과 출처 등급
 ```
 
 ## 설치
