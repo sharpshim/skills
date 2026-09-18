@@ -50,20 +50,39 @@ sharpshim-english/
 
 ## 설치
 
-이 저장소를 내려받은 위치를 `~/skills/sharpshim-english`라고 가정합니다.
+스킬은 `SKILL.md` 하나로 동작합니다. 이 README는 읽는 사람을 위한 것이라 설치하지 않아도 됩니다.
 
-### Claude Code
+### 파일 하나만 받기
+
+가장 간단한 방법입니다. 저장소를 클론하지 않아도 되고 git도 필요 없습니다.
 
 ```bash
-mkdir -p ~/.claude/skills
-ln -s ~/skills/sharpshim-english ~/.claude/skills/sharpshim-english
+mkdir -p ~/.claude/skills/sharpshim-english
+curl -o ~/.claude/skills/sharpshim-english/SKILL.md \
+  https://raw.githubusercontent.com/sharpshim/skills/main/sharpshim-english/SKILL.md
 ```
 
-### Codex, Gemini CLI
+디렉터리 경로만 도구에 맞게 바꾸면 됩니다.
 
-두 도구가 공통으로 쓰는 상호운용 경로에 링크하면 한 번에 해결됩니다.
+| 도구 | 경로 |
+|---|---|
+| Claude Code | `~/.claude/skills/sharpshim-english/` |
+| Codex, Gemini CLI | `~/.agents/skills/sharpshim-english/` |
+
+`curl`을 쓰기 어려우면 [SKILL.md](SKILL.md)를 열어 내용을 복사한 뒤, 편집기로 같은 경로에 파일을 만들어 붙여 넣어도 결과는 같습니다.
+
+**이 방식은 갱신이 자동으로 되지 않습니다.** 고쳐진 내용을 받으려면 같은 명령을 다시 실행하십시오.
+
+### 저장소를 클론해 링크하기
+
+고친 내용을 `git pull`로 받고 싶을 때 씁니다. 내려받은 위치를 `~/skills/sharpshim-english`라고 가정합니다.
 
 ```bash
+# Claude Code
+mkdir -p ~/.claude/skills
+ln -s ~/skills/sharpshim-english ~/.claude/skills/sharpshim-english
+
+# Codex, Gemini CLI (두 도구가 함께 쓰는 상호운용 경로)
 mkdir -p ~/.agents/skills
 ln -s ~/skills/sharpshim-english ~/.agents/skills/sharpshim-english
 ```
