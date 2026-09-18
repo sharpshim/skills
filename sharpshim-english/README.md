@@ -1,4 +1,4 @@
-# english-practice
+# sharpshim-english
 
 평소 작업을 하면서 영어에 노출되게 하는 Agent Skill입니다.
 
@@ -43,20 +43,20 @@
 ## 구성
 
 ```
-english-practice/
+sharpshim-english/
 ├── SKILL.md    레벨별 기준, 발동 조건, 지켜야 할 것
 └── README.md
 ```
 
 ## 설치
 
-이 저장소를 내려받은 위치를 `~/skills/english-practice`라고 가정합니다.
+이 저장소를 내려받은 위치를 `~/skills/sharpshim-english`라고 가정합니다.
 
 ### Claude Code
 
 ```bash
 mkdir -p ~/.claude/skills
-ln -s ~/skills/english-practice ~/.claude/skills/english-practice
+ln -s ~/skills/sharpshim-english ~/.claude/skills/sharpshim-english
 ```
 
 ### Codex, Gemini CLI
@@ -65,7 +65,7 @@ ln -s ~/skills/english-practice ~/.claude/skills/english-practice
 
 ```bash
 mkdir -p ~/.agents/skills
-ln -s ~/skills/english-practice ~/.agents/skills/english-practice
+ln -s ~/skills/sharpshim-english ~/.agents/skills/sharpshim-english
 ```
 
 ### claude.ai
@@ -73,7 +73,7 @@ ln -s ~/skills/english-practice ~/.agents/skills/english-practice
 폴더를 zip으로 묶어서 설정 화면에서 업로드합니다. 이 환경만 자동 동기화가 되지 않으므로, 내용을 고칠 때마다 다시 올려야 합니다.
 
 ```bash
-cd ~/skills && zip -r english-practice.zip english-practice
+cd ~/skills && zip -r sharpshim-english.zip sharpshim-english
 ```
 
 ### ChatGPT, Gemini 웹처럼 스킬 기능이 없는 도구
@@ -87,11 +87,11 @@ cd ~/skills && zip -r english-practice.zip english-practice
 
 ## 사용
 
-**"샤프심 영어 교실 시작"**이라고 하면 레벨을 묻습니다. 이 문구가 아니면 발동하지 않습니다. 영어 학습을 화제로 꺼낸 것과 실제로 시작하려는 것을 가르기 위해서입니다. 레벨을 답하면 그때부터 모든 답변에 번역이 붙습니다.
+말에 **"샤프심 영어"**가 들어 있으면 레벨을 묻습니다. "샤프심 영어 교실 시작", "샤프심 영어 교실", "샤프심 영어"가 모두 해당하며 띄어쓰기는 가리지 않습니다. "샤프심"이 없으면 발동하지 않습니다. 영어 학습을 화제로 꺼낸 것과 실제로 시작하려는 것을 가르기 위해서입니다. 레벨을 답하면 그때부터 모든 답변에 번역이 붙습니다.
 
 레벨을 바꿀 때는 **「영어」, 「레벨」, `level` 가운데 하나를 넣거나 레벨 표기를 직접 말합니다.** "B1으로 바꿔"처럼 쓰면 됩니다. "너무 어렵네요" 같은 말로는 바뀌지 않습니다. 작업이 어렵다는 뜻일 때가 훨씬 많기 때문입니다.
 
-"샤프심 영어 교실 그만"이나 "영어 그만 섞어"라고 하면 멈춥니다. 종료는 표현을 가리지 않습니다.
+"샤프심 영어 교실 그만", "영어 그만 섞어"처럼 멈추라는 뜻이면 표현을 가리지 않고 멈춥니다. 시작과 달리 잘못 멈춰도 손해가 작기 때문입니다.
 
 메모리 기능이 있는 환경이라면 레벨이 저장되어 다음 세션부터는 묻지 않습니다. 없어도 정상 동작하며, 세션마다 레벨을 답하면 됩니다.
 
