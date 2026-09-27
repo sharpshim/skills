@@ -1,5 +1,16 @@
 # 변경 기록
 
+## 0.3.1
+- 기법 카탈로그를 2026-09-27 기준 공식 문서와 대조해서 갱신.
+- Claude Code 2.1.277에서 `taskOutputMaxChars`와 TaskOutput 도구가 제거되어, 「도구 출력 잘라내기」에서
+  해당 설정을 지우고 백그라운드 출력은 파일을 필요한 구간만 읽도록 안내함.
+- Claude Code의 `/cost`가 `/usage`의 별칭이 되어, 「모델과 노력 수준 낮추기」에서 `/usage`를 기본으로 안내함.
+  Codex CLI 0.156.0의 `/usage` 대시보드를 함께 기재.
+- Claude Code 새 기능을 기존 기법에 덧붙임: 서브에이전트 frontmatter의 `omitClaudeMd`(2.1.271),
+  CLAUDE.md가 없을 때 AGENTS.md를 읽는 동작(2.1.277), `CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`(2.1.280),
+  `/doctor prompt-audit`(2.1.283).
+- Codex CLI 0.156.0에서 worktree 세션이 기본으로 켜진 점을 「병렬 세션」에 기재.
+
 ## 0.3.0
 - references/sources.md를 신설. 출처를 4등급으로 나누고, 명령어와 설정값은 1등급 공식 문서에서만
   가져오도록 함. Claude Code, Codex CLI, Gemini CLI의 문서 색인과 자주 확인하는 페이지를 수록.
