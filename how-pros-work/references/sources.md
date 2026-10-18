@@ -2,7 +2,7 @@
 
 진단 중에 명령어, 설정값, 기능의 현재 상태를 확인할 때 조회하는 문서 목록입니다. 웹 검색으로 아무 글이나 찾는 대신, 이 목록에서 해당 도구의 문서를 골라 직접 조회하십시오.
 
-마지막 확인일: 2026-09-27
+마지막 확인일: 2026-10-18
 
 ## 목차
 
@@ -46,7 +46,7 @@
 
 ### Codex CLI
 
-- 색인: https://developers.openai.com/codex/llms.txt (현재 https://learn.chatgpt.com/docs/llms.txt 로 리디렉션됨)
+- 색인: https://learn.chatgpt.com/docs/llms.txt (기존 https://developers.openai.com/codex/llms.txt 에서 리디렉션됨)
 
 | 확인할 내용 | 문서 |
 |---|---|

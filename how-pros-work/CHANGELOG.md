@@ -1,5 +1,13 @@
 # 변경 기록
 
+## 0.3.2
+- 기법 카탈로그를 2026-10-18 기준 공식 문서와 대조해 갱신.
+- Claude Code의 `/compact`가 모든 지침을 보존한다고 보장되지 않음을 명시하고, idle compaction 설정과 긴 대화·작은 컨텍스트 모델 전환 시의 요약 동작을 「압축」에 추가.
+- 공식 문서에서 확인할 수 없는 `bashOutputMaxChars` 및 `CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH` 기본값 주장을 제거.
+- 공식 문서에서 확인되지 않은 Codex `/usage` 대시보드 주장을 제거하고, worktree 기본 활성화 대신 새 실행/fork에서 `--worktree`를 지정하는 방법을 안내.
+- Claude Code fork 서브에이전트 기본 활성화와 Gemini CLI v0.64.0의 대화 기록 저장 효율·상태 복구를 관련 기법에 추가.
+- Codex 문서 색인 URL을 현재 리디렉션 대상으로 갱신.
+
 ## 0.3.1
 - 기법 카탈로그를 2026-09-27 기준 공식 문서와 대조해서 갱신.
 - Claude Code 2.1.277에서 `taskOutputMaxChars`와 TaskOutput 도구가 제거되어, 「도구 출력 잘라내기」에서
