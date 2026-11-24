@@ -2,7 +2,7 @@
 
 진단 중에 명령어, 설정값, 기능의 현재 상태를 확인할 때 조회하는 문서 목록입니다. 웹 검색으로 아무 글이나 찾는 대신, 이 목록에서 해당 도구의 문서를 골라 직접 조회하십시오.
 
-마지막 확인일: 2026-10-18
+마지막 확인일: 2026-11-24
 
 ## 목차
 
@@ -73,9 +73,9 @@
 ## 2등급: 공식 엔지니어링 글
 
 - Anthropic, "Effective context engineering for AI agents"
-  https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+  https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
 - Anthropic, "Writing effective tools for AI agents"
-  https://www.anthropic.com/engineering/writing-tools-for-agents
+  https://www.anthropic.com/research/writing-tools-for-agents
 
 ---
 

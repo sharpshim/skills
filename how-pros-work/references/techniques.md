@@ -4,7 +4,7 @@
 
 제안을 작성할 때는 이 문서에서 기법을 하나 골라, 그 기법의 이름과 실행 방법을 그대로 제시하십시오. "프롬프트를 더 구체적으로 쓰세요" 같은 서술은 이 문서를 참조하지 않았다는 뜻입니다.
 
-마지막 확인일: 2026-10-18
+마지막 확인일: 2026-11-24
 
 ## 목차
 
@@ -41,7 +41,7 @@
 - 남길 것: 확정된 결정, 미해결 문제, 구현 세부 사항. 버릴 것: 중복된 도구 출력, 이미 처리된 중간 메시지.
 - Claude Code에서는 `/compact`에 지시를 덧붙일 수 있습니다. 예: `/compact API 변경 사항 위주로 정리해줘`
 - 압축 시 보존할 항목을 CLAUDE.md에 미리 지시할 수 있지만, 모든 지침이 보존된다는 보장은 없습니다. 압축 후에는 호출한 스킬 본문이 다시 주입됩니다.
-- Claude Code에서는 `/config`에서 idle compaction을 켜거나 끌 수 있습니다. 긴 대화가 안전 검사 한계를 넘으면 압축하며, 새 모델의 컨텍스트가 더 작을 때는 이전 모델이 먼저 요약합니다.
+- Claude Code에서는 `/config`에서 idle compaction을 켜거나 끌 수 있고, VS Code와 Desktop의 Code 탭에서도 같은 기능이 동작합니다. 200K 토큰이 넘는 대화를 한동안 두어 프롬프트 캐시가 만료되면 요약해 두었다가, 다음 메시지에서 그 요약을 사용합니다. 긴 대화가 안전 검사 한계를 넘으면 압축하며, 새 모델의 컨텍스트가 더 작을 때는 이전 모델이 먼저 요약합니다.
 
 ### 구조화된 메모 남기기 (Structured note-taking)
 
@@ -70,7 +70,7 @@
 Claude Code에서는 매 요청마다 복원 지점이 생깁니다. `Esc`를 두 번 누르거나 `/rewind`로 대화만, 코드만, 또는 둘 다 되돌릴 수 있습니다.
 
 - 신중하게 계획하는 대신 과감하게 시도하고 실패하면 되감는 전략이 가능해집니다.
-- 단, 파일 편집 도구를 거친 변경만 추적되므로 bash로 만든 변경은 복원되지 않습니다.
+- 단, 편집 도구로 한 번이라도 수정한 파일은 이후 bash 명령이 만든 변경도 되돌려지지만, bash 명령으로만 바뀐 파일은 추적되지 않으므로 복원되지 않습니다. 그런 파일은 Git으로 되돌리십시오.
 
 ---
 
@@ -110,6 +110,8 @@ Claude Code에서는 매 요청마다 복원 지점이 생깁니다. `Esc`를 �
 「서브에이전트로 조사 분리하기」와 같은 기법입니다. 토큰 관점에서 다시 말하면, 조사 과정에서 읽은 파일 수십 개가 주 대화에 남지 않고 요약 몇 줄만 돌아옵니다. 탐색 범위가 넓을수록 절감 폭이 큽니다.
 
 - 프로젝트 지침이 필요 없는 조사용 서브에이전트라면, Claude Code에서는 에이전트 frontmatter에 `omitClaudeMd`를 지정해서 CLAUDE.md를 싣지 않고 실행할 수 있습니다.
+- 서브에이전트의 추론 수준은 환경 변수 `CLAUDE_CODE_SUBAGENT_EFFORT`로 지정할 수 있습니다. 다른 곳에서 수준을 지정하지 않으면 세션의 수준을 상속하는 대신 이 값으로 실행됩니다.
+- 서브에이전트의 진행 요약을 만드는 요청도 토큰을 쓰므로, 필요하지 않다면 `CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES=1`로 끌 수 있습니다.
 
 ### 캐시를 깨지 않는 순서로 작업하기
 
@@ -188,6 +190,7 @@ Claude Code에서는 매 요청마다 복원 지점이 생깁니다. `Esc`를 �
 작업한 주체가 자기 결과를 채점하면 편향이 생깁니다. 별도 컨텍스트에서 변경 사항만 보고 검토하게 하면 결과를 독립적으로 판단합니다.
 
 - 주의: 결함을 찾으라고 지시받은 검토자는 결함이 없어도 무언가를 보고합니다. 모든 지적을 좇으면 과잉 설계로 이어집니다. "정확성이나 명시된 요구 사항에 영향을 주는 것만 보고하고, 취향 문제는 빼라"고 범위를 한정하십시오.
+- Claude Code의 `/code-review`는 대부분의 모델에서 버그와 CLAUDE.md 위반만 보고합니다. 재사용, 단순화, 효율 같은 정리 항목은 `/simplify`로 따로 실행하십시오. 두 명령이 역할을 나누므로 범위를 직접 한정하는 수고가 줄어듭니다.
 
 ---
 
@@ -205,7 +208,7 @@ Claude Code에서는 매 요청마다 복원 지점이 생깁니다. `Esc`를 �
 - 규칙을 넣어 두었는데도 계속 지켜지지 않는다면, 문서가 너무 길어서 그 규칙이 파묻혔을 가능성이 큽니다.
 - 반드시 예외 없이 실행되어야 하는 동작은 지침이 아니라 훅으로 만드십시오. 지침은 권고이지만 훅은 결정적입니다.
 - Claude Code는 CLAUDE.md가 없는 프로젝트에서 AGENTS.md를 대신 읽습니다. 여러 도구를 함께 쓰는 저장소라면 AGENTS.md 하나로 지침을 관리할 수 있습니다.
-- 지침 문서와 스킬이 이전 모델에 맞춰 쓰였는지 점검하려면 Claude Code의 `/doctor prompt-audit`을 실행합니다.
+- 지침 문서와 스킬이 이전 모델에 맞춰 쓰였는지 점검하려면 Claude Code의 `/doctor prompt-audit`을 실행합니다. `/status`에서는 깨진 스킬, 에이전트, 명령, 출력 스타일 파일과 한 번도 일치하지 않는 훅 matcher 같은 설정 오류 목록을 확인할 수 있습니다.
 
 ### 승인 피로 줄이기
 
@@ -257,8 +260,8 @@ Claude Code에서는 매 요청마다 복원 지점이 생깁니다. `Esc`를 �
 ## 출처
 
 - Anthropic, "Effective context engineering for AI agents" (2025-09-29) — 컨텍스트 유한성, 압축, 구조화된 메모, 필요 시점 불러오기, 서브에이전트 구조
-  https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
-- Anthropic, "Best practices for Claude Code" — 검증 수단 제공, 탐색·계획·구현 분리, 요청 구체화, 지침 문서 작성, 권한 설정, 세션 관리, 실패 패턴
+  https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+- Anthropic, "Best practices for Claude Code" — 검증 수단 제공, 인터뷰 후 SPEC.md를 새 세션에서 구현하는 흐름, 요청 구체화, 지침 문서 작성, 권한 설정, 세션 관리, 실패 패턴
   https://code.claude.com/docs/en/best-practices
 - Anthropic, "Writing effective tools for AI agents" — 도구 집합 비대화 문제, 토큰 효율적인 도구 응답
-  https://www.anthropic.com/engineering/writing-tools-for-agents
+  https://www.anthropic.com/research/writing-tools-for-agents
