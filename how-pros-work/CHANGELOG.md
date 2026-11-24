@@ -1,5 +1,13 @@
 # 변경 기록
 
+## 0.3.3
+- 기법 카탈로그를 2026-11-24 기준 공식 문서와 대조해 갱신.
+- Claude Code 체크포인트 문서에 따라 「되감기」를 고침. 편집 도구로 수정한 파일은 이후 bash 변경도 되돌려지고, bash로만 바뀐 파일은 추적되지 않아 Git을 써야 함.
+- Anthropic 엔지니어링 글 두 편이 `/engineering/`에서 `/research/`로 이동(308 리디렉션)해 주소를 교체.
+- best-practices 문서에서 탐색, 계획, 구현 3단계 절을 확인하지 못해, 출처 설명을 인터뷰 후 SPEC.md를 새 세션에서 구현하는 흐름으로 조정. 계획 모드 자체는 permission-modes 문서에서 유효함을 확인했으므로 본문은 유지.
+- Claude Code 새 기능을 기존 기법에 덧붙임: VS Code와 Desktop의 idle compaction(10-30), `CLAUDE_CODE_SUBAGENT_EFFORT`(10-31), `CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES`(11-12), `/code-review`와 `/simplify`의 역할 분담(2.1.328), `/status`의 설정 오류 목록(2.1.327).
+- 이 갱신에서 확인하지 못한 구간: Claude Code changelog의 10-19부터 11-15까지 "Changed" 항목.
+
 ## 0.3.2
 - 기법 카탈로그를 2026-10-18 기준 공식 문서와 대조해 갱신.
 - Claude Code의 `/compact`가 모든 지침을 보존한다고 보장되지 않음을 명시하고, idle compaction 설정과 긴 대화·작은 컨텍스트 모델 전환 시의 요약 동작을 「압축」에 추가.
